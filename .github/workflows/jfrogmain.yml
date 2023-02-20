@@ -23,8 +23,8 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - uses: jfrog/setup-jfrog-cli@v3
-
-    - name: Log in to JFrog
-      run: jfrog rt config --interactive=false --user=${{ secrets.username }} --password=${{ secrets.password }} --url=${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
-    - name: Publish artifacts
-      run: jfrog rt upload --recursive --regexp="target/*.jar" myrepo-local/
+       env:
+         - name: Log in to JFrog
+           run: jfrog rt config --interactive=false --user=${{ secrets.username }} --password=${{ secrets.password }} --url=${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
+         - name: Publish artifacts
+           run: jfrog rt upload --recursive --regexp="target/*.jar" myrepo-local/
